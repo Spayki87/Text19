@@ -21,15 +21,17 @@ namespace Локальные_максимумы
             for (int i = 0; i < arrayNumbers.Length; i++)
             {
                 arrayNumbers[i] = random.Next(minValue, maxValue);
-                Console.Write(arrayNumbers[i] + " ");
+                Console.Write($"{arrayNumbers[i]} ");
             }
+
+            Console.WriteLine($"\nЛокальный максимум:");
 
             if (arrayNumbers[0] > arrayNumbers[1])
             {
-                Console.Write($"\nЛокальный максимум:\n{arrayNumbers[0]} ");
+                Console.Write($"{arrayNumbers[0]} ");
             }
 
-            for (int i = 1; i < arrayNumbers.Length - 2; i++)
+            for (int i = 1; i < arrayNumbers.Length - 1; i++)
             {
                 if (arrayNumbers[i] > arrayNumbers[i + 1] && arrayNumbers[i] > arrayNumbers[i - 1])
                 {
@@ -39,8 +41,10 @@ namespace Локальные_максимумы
 
             if (arrayNumbers[arrayElements - 1] > arrayNumbers[arrayElements - 2])
             {
-                Console.WriteLine($"{arrayNumbers[arrayElements - 1]}") ;
+                Console.Write($"{arrayNumbers[arrayElements - 1]}");
             }
+
+            Console.WriteLine();
         }
     }
 }

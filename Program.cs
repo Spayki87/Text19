@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Наибольший_элемент
+namespace Локальные_максимумы
 {
     internal class Program
     {
@@ -12,51 +13,33 @@ namespace Наибольший_элемент
         {
             Random random = new Random();
 
-            int lineSize = 10;
-            int columnSize = 10;
-            int[,] array = new int[lineSize, columnSize];
-            int maxElement = int.MinValue;
+            int arrayElements = 30;
+            int[] arrayNumbers = new int[] { 6, 16, 83, 82, 7, 68 };
             int minValue = 0;
-            int maxValue = 50;
-            int assignedValue = 0;
+            int maxValue = 100;
 
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < arrayNumbers.Length; i++)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    array[i, j] = random.Next(minValue, maxValue);
-                    Console.Write(array[i, j] + "  ");
-
-                    if (maxElement < array[i, j])
-                    {
-                        maxElement = array[i, j];
-                    }
-                }
-
-                Console.WriteLine();
+               // arrayNumbers[i] = random.Next(minValue, maxValue);
+                Console.Write(arrayNumbers[i] + " ");
             }
 
-            Console.WriteLine($"\nМаксимальное число массива: {maxElement}\n");
-
-            for (int i = 0; i < array.GetLength(0); i++)
+            if (arrayNumbers[0] > arrayNumbers[1])
             {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (maxElement == array[i, j])
-                    {
-                        array[i, j] = assignedValue;
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-
-                    Console.Write(array[i, j] + "  ");
-                }
-
-                Console.WriteLine();
+                Console.WriteLine(arrayNumbers[0]);
             }
+
+            for (int i = 1; i < arrayNumbers.Length - 2; i++)
+            {
+                if (arrayNumbers[i] > arrayNumbers[i + 1] && arrayNumbers[i] > arrayNumbers[i - 1])
+                {
+                    Console.WriteLine(arrayNumbers[i]);
+                }
+            }
+
+            //if (arrayNumbers[arrayElements - 1])
+            //Console.WriteLine(arrayNumbers[arrayElements - 1] + " ");
+
         }
     }
 }

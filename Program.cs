@@ -3,45 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace Локальные_максимумы
+namespace Динамический_массив
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
+            string sum = "sum";
+            string exit = "exit";
+            string userInput;
 
-            int arrayElements = 30;
-            int[] arrayNumbers = new int[arrayElements];
-            int minValue = 0;
-            int maxValue = 100;
+            int[] array = new int[0];
 
-            for (int i = 0; i < arrayNumbers.Length; i++)
+            bool exitProgram = true;
+
+            while (exitProgram)
             {
-                arrayNumbers[i] = random.Next(minValue, maxValue);
-                Console.Write($"{arrayNumbers[i]} ");
-            }
+                Console.SetCursorPosition(10, 0);
+                Console.WriteLine($"Вы вошли в программу сложения. Поочередно вводите числа.");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"\nВведите число:\nВведите {sum} для сложения.\nВведите {exit} для выхода из программы.");
+                userInput = Console.ReadLine();
 
-            Console.WriteLine($"\nЛокальный максимум:");
-
-            if (arrayNumbers[0] > arrayNumbers[1])
-            {
-                Console.Write($"{arrayNumbers[0]} ");
-            }
-
-            for (int i = 1; i < arrayNumbers.Length - 1; i++)
-            {
-                if (arrayNumbers[i] > arrayNumbers[i + 1] && arrayNumbers[i] > arrayNumbers[i - 1])
+                if (userInput == exit)
                 {
-                    Console.Write($"{arrayNumbers[i]} ");
+                    exitProgram = false;
+                    Console.WriteLine($"Вы вышли из программы.");
                 }
-            }
+                else if (userInput == sum)
+                {
+                    int sumNumbers = 0;
 
-            if (arrayNumbers[arrayElements - 1] > arrayNumbers[arrayElements - 2])
-            {
-                Console.Write($"{arrayNumbers[arrayElements - 1]}");
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        sumNumbers += array[i];
+                    }
+
+                    Console.WriteLine($"{sumNumbers} - сумма чисел.");
+                }
+                else
+                {
+                    int[] arrayGrowth = new int[array.Length + 1];
+                    arrayGrowth[arrayGrowth.Length - 1] = Convert.ToInt32(userInput);
+
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        arrayGrowth[i] = array[i];
+                    }
+
+                    array = arrayGrowth;
+                }
             }
 
             Console.WriteLine();

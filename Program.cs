@@ -47,7 +47,7 @@ namespace Подмассив_повторений_чисел
 
             if (number == 0)
             {
-                Console.WriteLine($"Нет чисел повторяющихся подрад.");
+                Console.WriteLine($"Нет чисел повторяющихся подряд.");
             }
 
             Console.WriteLine();

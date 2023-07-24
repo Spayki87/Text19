@@ -4,59 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Динамический_массив
+namespace Подмассив_повторений_чисел
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string sum = "sum";
-            string exit = "exit";
-            string userInput;
+            int arrayLength = 30;
+            int[] numbers = new int[arrayLength];
 
-            int[] array = new int[0];
+            Random random = new Random();
 
-            bool exitProgram = true;
+            int minNumber = 1;
+            int maxNumber = 3;
+            int counter = 1;
+            int maxRepeats = 1;
+            int number = 0;
 
-            while (exitProgram)
+            for (int i = 0; i < numbers.Length; i++)
             {
-                Console.SetCursorPosition(10, 0);
-                Console.WriteLine($"Вы вошли в программу сложения. Поочередно вводите числа.");
-                Console.SetCursorPosition(0, 0);
-                Console.WriteLine($"\nВведите число:\nВведите {sum} для сложения.\nВведите {exit} для выхода из программы.");
-                userInput = Console.ReadLine();
+                numbers[i] = random.Next(minNumber, maxNumber);
+                Console.Write($"{numbers[i]} ");
+            }
 
-                if (userInput == exit)
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] == numbers[i + 1])
                 {
-                    exitProgram = false;
-                    Console.WriteLine($"Вы вышли из программы.");
-                }
-                else if (userInput == sum)
-                {
-                    int sumNumbers = 0;
-
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        sumNumbers += array[i];
-                    }
-
-                    Console.WriteLine($"{sumNumbers} - сумма чисел.");
+                    counter++;
                 }
                 else
                 {
-                    int[] arrayGrowth = new int[array.Length + 1];
-                    arrayGrowth[arrayGrowth.Length - 1] = Convert.ToInt32(userInput);
+                    counter = 1;
+                }
 
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        arrayGrowth[i] = array[i];
-                    }
-
-                    array = arrayGrowth;
+                if (counter > maxRepeats)
+                {
+                    maxRepeats = counter;
+                    number = numbers[i];
                 }
             }
 
+            if (number == 0)
+            {
+                Console.WriteLine($"Нет чисел повторяющихся подрад.");
+            }
+
             Console.WriteLine();
+            Console.WriteLine($"Число {number} повторяется наибольшее количество раз подряд: {maxRepeats}.");
         }
     }
 }
